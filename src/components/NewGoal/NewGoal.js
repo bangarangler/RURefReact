@@ -1,24 +1,29 @@
-import React from 'react';
-import './NewGoal.css';
+import React, { useState } from "react";
+import "./NewGoal.css";
 
-const NewGoal = ({onAddGoal}) => {
+const NewGoal = ({ onAddGoal }) => {
+  const [enteredText, setEnteredText] = useState("");
 
-  const addGoalHandler = (event) => {
+  const addGoalHandler = event => {
     event.preventDefault();
     const newGoal = {
       id: Math.random().toString(),
-      text: "My new goal."
-    }
-    onAddGoal(newGoal)
-  }
+      text: enteredText
+    };
+    onAddGoal(newGoal);
+    setEnteredText("");
+  };
+
+  const textChangeHandler = event => {
+    setEnteredText(event.target.value);
+  };
 
   return (
-      <form className="new-goal" onSubmit={addGoalHandler}>
-      <input type="text" />
+    <form className="new-goal" onSubmit={addGoalHandler}>
+      <input onChange={textChangeHandler} type="text" value={enteredText} />
       <button type="submit">Add Goal</button>
-      </form>
+    </form>
   );
-}
-
+};
 
 export default NewGoal;

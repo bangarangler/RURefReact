@@ -14,6 +14,7 @@ const App = () => {
   const addNewGoalHandler = newGoal => {
     // CONCAT CREATES A NEW ARRAY
     //setCourseGoals(courseGoals.concat(newGoal));
+    // NEED BELOW FORMAT IF STATE DEPENDS ON PREVIOUS STATE
     setCourseGoals(prevState => {
       return prevState.concat(newGoal);
     });
